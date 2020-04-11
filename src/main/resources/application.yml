@@ -1,0 +1,43 @@
+
+server:
+  port: ${PORT:9092}
+  servlet:
+    context-path: /
+
+    session:
+      persistent: false
+      timeout: 0
+
+spring:
+  application:
+    name: OAuth2 Authorization Server
+  main:
+    banner-mode: off
+  datasource:
+    url: ${DATABASE_URL}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    # 'spring.jpa.open-in-view' is enabled by default. 
+    # Therefore, database queries may be performed during view rendering. 
+    # Explicitly configure spring.jpa.open-in-view to disable this warning
+    open-in-view: false 
+
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: ${HIBERNATE_SHOW_SQL:false}
+    properties:
+      hibernate:
+        generate_statistics: ${HIBERNATE_STATISTICS:false}
+        temp:
+          use_jdbc_metadata_defaults: false
+  
+  thymeleaf:
+    cache: false
+
+oauth2-config:
+  client-id: ${CLIENT_ID:58a94562a7a7502d4c1b}
+  client-secret: ${CLIENT_SECRET:d792ec02541816ca1095c917f2de73195fe86303}
+  server-url: ${SERVER_URL:https://development-oauth-server.herokuapp.com}
+  default-success-redirect: ${DEFAULT_SUCCESS_REDIRECT:https://development-accounts.ottimizza.com.br/auth/callback}
