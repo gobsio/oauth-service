@@ -3,6 +3,8 @@ package com.gobs.oauthservice.config.security;
 import java.util.Arrays;
 import java.util.List;
 
+import com.gobs.oauthservice.services.UserDetailsServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
