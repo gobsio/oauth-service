@@ -45,7 +45,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/api/organizations*").authenticated()
                     .antMatchers("/oauth/userinfo", "/oauth/tokeninfo", "/oauth/revoke_token").authenticated()
-                    .antMatchers("/api/**").authenticated()
+                    .antMatchers("/api/**").permitAll()
                     .antMatchers("/user/info", "/user/revoke_token").authenticated()
                     .antMatchers("/user/password_reset*", "/user/password_recovery*").permitAll()
                     .antMatchers("/user/**").authenticated()
