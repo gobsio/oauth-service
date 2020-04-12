@@ -19,6 +19,10 @@ public interface UsersRepository extends JpaRepository<User, BigInteger> {
     @Query("SELECT u FROM User u WHERE LOWER(u.username) = LOWER(:username)")
     Optional<User> findByUsername(@Param("username") String username);
 
+    @Query("SELECT u FROM User u WHERE LOWER(u.email) = LOWER(:email)")
+    Optional<User> findByEmail(@Param("email") String email);
+
+
     @Query(value = "SELECT a.name FROM users_authorities ua INNER JOIN authorities a ON (a.name = ua.fk_authorities_id) WHERE ua.fk_users_id = :id", nativeQuery = true)
     Set<Authority> fetchAuthoritiesById(@Param("id") BigInteger id);
 
