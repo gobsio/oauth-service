@@ -40,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private Collection<GrantedAuthority> getGrantedAuthorities(User user) {
         Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
-        for (UserAuthority authority : usersRepository.getUserAuthoritiesByUsername(user.getUsername()) {
+        for (UserAuthority authority : usersRepository.getUserAuthoritiesByUsername(user.getUsername())) {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getAuthority());
             grantedAuthorities.add(grantedAuthority);
         }
