@@ -9,6 +9,7 @@ import com.gobs.oauthservice.services.signup.SignUpService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -18,7 +19,7 @@ public class SignUpController {
     SignUpService service;
 
     @PostMapping("/register")
-    public ResponseEntity<?> signup(@Valid UserRegistration resgistration, Model model) throws Exception {
+    public ResponseEntity<?> signup(@Valid @RequestBody UserRegistration resgistration, Model model) throws Exception {
         return ResponseEntity.ok(service.register(resgistration));
     }
 
