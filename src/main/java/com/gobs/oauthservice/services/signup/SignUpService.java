@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import com.gobs.oauthservice.domain.dtos.UserDTO;
 import com.gobs.oauthservice.domain.entities.User;
+import com.gobs.oauthservice.domain.exceptions.user.UserAlreadyRegisteredException;
 import com.gobs.oauthservice.domain.mappers.users.UserMapper;
 import com.gobs.oauthservice.domain.requests.UserRegistration;
 import com.gobs.oauthservice.repositories.users.UsersRepository;
@@ -21,23 +22,14 @@ public class SignUpService {
     public UserDTO register(UserRegistration registration) throws Exception {
         User user = UserMapper.toEntity(registration);
 
-        validate(user);
+        checkEmailAlreadyRegistered(user.getEmail());
 
         return UserMapper.toDto(usersRepository.save(user)); 
     }
 
-    private boolean validate(User user) throws Exception {
-        if (user.getFirstName() == null || user.getFirstName().equals("")) {
-            throw new IllegalArgumentException("");
-        }
-        if (user.getEmail() == null || user.getEmail().equals("")) {
-            throw new IllegalArgumentException("");
-        }
-        if (user.getPhone() == null || user.getPhone().equals("")) {
-            throw new IllegalArgumentException("");
-        }
-        if (user.getPassword() == null || user.getPassword().equals("")) {
-            throw new IllegalArgumentException("");
+    private boolean checkEmailAlreadyRegistered(String username) throws UserAlreadyRegisteredException {
+        if (usersRepository.findByUsername(username).isPresent()) {
+            throw new UserAlreadyRegisteredException("");
         }
         return true;
     }
