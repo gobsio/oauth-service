@@ -2,6 +2,7 @@ package com.gobs.oauthservice.controllers;
 
 import javax.inject.Inject;
 
+import com.gobs.oauthservice.domain.entities.oauth.OAuthClientAdditionalInformation;
 import com.gobs.oauthservice.domain.entities.oauth.OAuthClientDetails;
 import com.gobs.oauthservice.services.oauth.OAuthService;
 
@@ -17,8 +18,8 @@ public class AuthController {
     private OAuthService oauthService;
 
     @PostMapping("/api/v1/oauth_clients")
-    public ResponseEntity<?> registerOAuth2Client(@RequestBody OAuthClientDetails clientDetails) throws Exception {
-        return ResponseEntity.ok("");
+    public ResponseEntity<?> registerOAuth2Client(@RequestBody OAuthClientAdditionalInformation additionalInformation) throws Exception {
+        return ResponseEntity.ok(oauthService.save(additionalInformation));
     }
 
 
