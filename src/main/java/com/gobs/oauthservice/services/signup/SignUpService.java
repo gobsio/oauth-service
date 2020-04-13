@@ -8,6 +8,8 @@ import com.gobs.oauthservice.domain.mappers.users.UserMapper;
 import com.gobs.oauthservice.domain.requests.UserRegistration;
 import com.gobs.oauthservice.repositories.users.UsersRepository;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
