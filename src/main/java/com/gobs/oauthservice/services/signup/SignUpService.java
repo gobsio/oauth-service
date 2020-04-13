@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import com.gobs.oauthservice.domain.dtos.UserDTO;
 import com.gobs.oauthservice.domain.entities.User;
 import com.gobs.oauthservice.domain.mappers.users.UserMapper;
+import com.gobs.oauthservice.domain.requests.UserRegistration;
 import com.gobs.oauthservice.repositories.users.UsersRepository;
 
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ public class SignUpService {
     @Inject
     UsersRepository usersRepository;
 
-    public UserDTO register(UserDTO userDTO) throws Exception {
-        User user = UserMapper.toEntity(userDTO);
+    public UserDTO register(UserRegistration registration) throws Exception {
+        User user = UserMapper.toEntity(registration);
 
         validate(user);
 
