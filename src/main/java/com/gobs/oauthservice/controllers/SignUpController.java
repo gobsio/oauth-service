@@ -19,8 +19,8 @@ public class SignUpController {
     SignUpService service;
 
     @PostMapping("/register")
-    public ResponseEntity<?> signup(@Valid @RequestBody UserRegistration resgistration, Model model) throws Exception {
-        return ResponseEntity.ok(service.register(resgistration));
+    public ResponseEntity<?> signup(@Valid @RequestBody UserRegistration registration, Model model) throws Exception {
+        return ResponseEntity.ok(service.register(registration));
     }
 
 }

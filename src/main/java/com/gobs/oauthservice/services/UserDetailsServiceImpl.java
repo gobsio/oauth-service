@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import com.gobs.oauthservice.domain.entities.Authority;
 import com.gobs.oauthservice.domain.entities.User;
+import com.gobs.oauthservice.domain.entities.authorities.UserAuthority;
 import com.gobs.oauthservice.repositories.users.UsersRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private Collection<GrantedAuthority> getGrantedAuthorities(User user) {
         Collection<GrantedAuthority> grantedAuthorities = new ArrayList<>();
 
-        for (Authority authority : usersRepository.fetchAuthoritiesById(user.getId())) {
+        for (UserAuthority authority : usersRepository.fetchAuthoritiesById(user.getId())) {
             GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(authority.getName());
             grantedAuthorities.add(grantedAuthority);
         }
