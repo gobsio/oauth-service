@@ -25,6 +25,7 @@ public class UserMapper {
                 .firstName(registration.getEmail())
                 .lastName(registration.getEmail())
                 .email(registration.getEmail())
+                .username(registration.getEmail())
                 .phone(registration.getEmail())
                 .password(new BCryptPasswordEncoder().encode(registration.getPassword()))
             .build();
