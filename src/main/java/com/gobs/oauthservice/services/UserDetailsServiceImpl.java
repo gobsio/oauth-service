@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import javax.transaction.Transactional;
 
-import com.gobs.oauthservice.domain.entities.Authority;
 import com.gobs.oauthservice.domain.entities.User;
 import com.gobs.oauthservice.domain.entities.authorities.UserAuthority;
 import com.gobs.oauthservice.repositories.users.UsersRepository;
