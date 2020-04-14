@@ -18,13 +18,14 @@ import lombok.NoArgsConstructor;
 public class UserAuthority implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @EmbeddedId
     private UserAuthorityId id;
 
-    @Column(name = "username", nullable = false, length = 256)
+    @Column(name = "username", nullable = false, length = 256, insertable = false, updatable = false)
     private String username;
 
-    @Column(name = "authority", nullable = false, length = 50)
+    @Column(name = "authority", nullable = false, length = 50, insertable = false, updatable = false)
     private String authority;
 
 }
