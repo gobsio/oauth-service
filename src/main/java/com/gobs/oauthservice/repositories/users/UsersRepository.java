@@ -4,7 +4,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.math.BigInteger;
 
-import com.gobs.oauthservice.domain.entities.Authority;
 import com.gobs.oauthservice.domain.entities.User;
 import com.gobs.oauthservice.domain.entities.authorities.UserAuthority;
 
