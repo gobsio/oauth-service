@@ -1,5 +1,7 @@
 package com.gobs.oauthservice.config.security;
 
+import java.util.Arrays;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -37,18 +39,18 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         //             .antMatchers("/user/password_reset*", "/user/password_recovery*").permitAll()
         //         .anyRequest().authenticated();
 
+        String[] authenticated = Arrays.asList(
+            "/api/**", "/oauth/userinfo", "/oauth/tokeninfo", "/oauth/revoke_token"
+        ).toArray(new String[]{});
+
         http
             //     .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             // .and()
-                .requestMatchers().antMatchers("/user/**", "/api/**", "/oauth/userinfo", "/oauth/tokeninfo", "/oauth/revoke_token")
+                .requestMatchers()
+                    .antMatchers(authenticated)
             .and()
                 .authorizeRequests()
-                    .antMatchers("/api/organizations*").authenticated()
-                    .antMatchers("/oauth/userinfo", "/oauth/tokeninfo", "/oauth/revoke_token").authenticated()
-                    .antMatchers("/api/**").permitAll()
-                    .antMatchers("/user/info", "/user/revoke_token").authenticated()
-                    .antMatchers("/user/password_reset*", "/user/password_recovery*").permitAll()
-                    .antMatchers("/user/**").authenticated()
+                    .antMatchers(authenticated).authenticated()
                     .antMatchers("/**").permitAll()
                 .anyRequest().authenticated();
 		// @formatter:on
